@@ -1,0 +1,88 @@
+@import
+url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap");
+body{
+    background: #2c302d;
+    font-family: "Roboto", sans-serif;
+    color: white;
+    margin: 0;
+}
+.subInfo{
+    height: 35px;
+    display: flex;
+    align-items: center;
+    
+}
+.card{
+    background: #191a19;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    border-radius: 10px;
+    padding-left: 20px;
+    box-shadow:  4px 4px 11px #0a0a0a, 
+             -4px -4px 11px #282a28;
+}
+button{
+    padding: 10px;
+    border-radius: 50px;
+    background: #1f75c4;
+    color: white;
+    font-weight: bold;
+    border: none;
+    width: 128px;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.infoVal{
+    margin-left: 10px;
+}
+.descr{
+    color: gray;
+}
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+#navbar{
+    padding: 2em;
+    display: flex;
+    justify-content: space-evenly;
+    background: #191a19;
+    box-shadow: 0px 7px 25px #0a0a0a;
+}
+.lText{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+}
+.section{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    font-size: 50px;
+    letter-spacing: 1px;
+}
+.loginBttn{
+    padding-left: 56px;
+    width: 153px;
+}
+.txtBox{
+    background: #191a19;
+    border: 2px solid #2c302d;
+    height: 30px;
+    color: white;
+    width: 145px;   
+}
+.youAgree{
+    color: grey;
+    width: 151px;
+    font-size: 11px;
+    margin-top: 23px;
+}
