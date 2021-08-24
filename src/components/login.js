@@ -55,29 +55,31 @@ const Login = (props) => {
     <div className="cardContainer">
         <div className="card">
         <div className="toggle">
-        <Link to='/login/signin'>LOGIN</Link>
-        <Link to='/login/register'>REGISTER</Link>
+        <Link to='/login/signin' className="opt">LOGIN</Link>
+        <Link to='/login/register' className="opt">REGISTER</Link>
         </div>
         <div>
         <Route exact path="/login/register">
-        <form onSubmit={ async (event) => {
+        <form className='field' onSubmit={ async (event) => {
             await event.preventDefault();
-            register();
+            await register();
+            setUsername('');
+            setPassword('');
             }}>
           <div className="usernameInput">
             <p>Username</p>
-            <input type ="text" placeholder="Username" className="txtBox" onChange={(event) => setUsername(event.target.value)}></input>
+            <input type ="text" placeholder="Username" className="txtBox" value={username} onChange={(event) => setUsername(event.target.value)}></input>
           </div>
           <div className="passwordInput">
               <p>Password</p>
-            <input type ="password" placeholder="Password" className="txtBox" onChange={(event) => setPassword(event.target.value)}></input>
+            <input type ="password" placeholder="Password" className="txtBox" value={password} onChange={(event) => setPassword(event.target.value)}></input>
           </div>
           <p className="youAgree">By submitting this form I agree to the terms and conditions.</p>
           <button type="submit" className="loginBttn">REGISTER</button>
           </form>
         </Route>
         <Route exact path="/login/signin">
-        <form onSubmit={ async (event) => {
+        <form className='field' onSubmit={ async (event) => {
             await event.preventDefault();
             await existing();
             setUsername('');

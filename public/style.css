@@ -86,3 +86,24 @@ button{
     font-size: 11px;
     margin-top: 23px;
 }
+.toggle{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px;
+}
+.opt{
+    text-decoration: none;
+    color: white;
+}
+.opt:hover{
+    text-decoration: underline;
+}
+.lText:hover{
+    text-decoration: underline;
+}
+.field{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
