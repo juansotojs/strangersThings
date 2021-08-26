@@ -8,7 +8,6 @@ const Login = (props) => {
   const setPassword = props.setPassword;
   const setToken = props.setToken;
   const token = props.token;
-  let registerUser = 0;
     const existing = (props) => {
       fetch('https://strangers-things.herokuapp.com/api/2105-SJS-RM-WEB-PT/users/login', {
         method: "POST",

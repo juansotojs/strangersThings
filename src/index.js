@@ -15,16 +15,31 @@ const App = () => {
   return <>
   <BrowserRouter>
   <div className='container'>
-  <div id='navbar'>
-    <Link to='/home' className='lText'>HOME</Link>
-    <Link to='/posts' className='lText'>POSTS</Link>
-    <Link to='/profile' className='lText'>PROFILE</Link>
-    { token ? <a href="#" className='lText' onClick={(event) => {
-      event.preventDefault();
-      setToken('')}}>LOGOUT</a> : <Link to='/login' className='lText'>LOGIN</Link>}
+  <div className='dashboard'>
+    <div className='user'>
+    <h3>User Name</h3>
+    <p>Pro Member</p>
+    </div>
+    <div className='links'>
+      <div className='link'>
+        <Link to='/home' className='aType'>HOME</Link>
+      </div>
+      <div className='link'>
+        <Link to='/posts' className='aType'>POSTS</Link>
+      </div>
+      <div className='link'>
+        <Link to='/profile' className='aType'>PROFILE</Link>
+      </div>
+      <div className='link'>
+        { token ? <a href="#"  onClick={(event) => {
+        event.preventDefault();
+        setToken('')}}>LOGOUT</a> : <Link to='/login' className='lText'>LOGIN</Link>}
+      </div>
+    </div>
+    <div className='pro'>
+      <h2>Sign up to create a post.</h2>
+    </div>
   </div>
-
-  <div className='mainSection'>
     <Route exact path="/posts">
       <Posts posts={posts} setPosts={setPosts}/>
     </Route>
@@ -37,7 +52,6 @@ const App = () => {
     <Route exact path="/login">
       <Login setPassword={setPassword} password={password} setUsername={setUsername} username={username} setToken={setToken} token={token}/>
     </Route>
-  </div>
   </div>
   </BrowserRouter>
   

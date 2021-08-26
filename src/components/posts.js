@@ -11,10 +11,15 @@ const Posts = (props) => {
     useEffect(() => getPosts(), []);
     
     return <>
-      <h1 className='section'>Posts</h1>
-      <div className="cardContainer">
+    <div className='posts'>
+      <div className='status'>
+        <h1>Posts</h1>
+        <input type='text'></input>
+      </div>
+      <div className="cards">
       {posts.map((post, idx) => 
         <div key={idx} className="card">
+          <div className='card-info'>
           <h2>{post.title}</h2>
           <div className="info">
           <p className="descr">{post.description}</p>
@@ -25,9 +30,11 @@ const Posts = (props) => {
           <div className="subInfo">
           <h3>Location: </h3> <p className="infoVal">{post.location}</p></div>
           </div>
-          <button>SEND MESSAGE</button>
+          <button className='messageBttn'>SEND MESSAGE</button>
           </div>
+        </div>
       )}
+    </div>
     </div></>
 }
 
