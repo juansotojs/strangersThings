@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 const Login = (props) => {
   const username = props.username;
@@ -8,6 +9,7 @@ const Login = (props) => {
   const setPassword = props.setPassword;
   const setToken = props.setToken;
   const token = props.token;
+  let history = useHistory();
     const existing = (props) => {
       fetch('https://strangers-things.herokuapp.com/api/2105-SJS-RM-WEB-PT/users/login', {
         method: "POST",
@@ -23,6 +25,7 @@ const Login = (props) => {
   }).then(response => response.json())
     .then(result => {
      setToken(result.data.token);
+     history.push("/home");
    })
   .catch(console.error);
   }
@@ -43,6 +46,7 @@ const Login = (props) => {
            console.log('register');
            if(result.success === true){
              setToken(result.data.token);
+             history.push("/home");
            } 
           })
             //.catch(console.error);
@@ -50,15 +54,19 @@ const Login = (props) => {
     }
     return <> 
     <BrowserRouter>
+    <div className='posts'>
+      <div className='status'>
     <h1 className='section'>Login/Register</h1>
-    <div className="cardContainer">
+    </div>
+    <div className="cards">
         <div className="card">
         <div className="toggle">
-        <Link to='/login/signin' className="opt">LOGIN</Link>
-        <Link to='/login/register' className="opt">REGISTER</Link>
+        <Link to='/login/signin' className="opt">Login</Link>
+        <Link to='/login/register' className="opt">Register</Link>
         </div>
         <div>
         <Route exact path="/login/register">
+          <div className="card-info">
         <form className='field' onSubmit={ async (event) => {
             await event.preventDefault();
             await register();
@@ -76,6 +84,7 @@ const Login = (props) => {
           <p className="youAgree">By submitting this form I agree to the terms and conditions.</p>
           <button type="submit" className="loginBttn">REGISTER</button>
           </form>
+          </div>
         </Route>
         <Route exact path="/login/signin">
         <form className='field' onSubmit={ async (event) => {
@@ -84,6 +93,7 @@ const Login = (props) => {
             setUsername('');
             setPassword('');
             }}>
+          <div className="fillOut">
           <div className="usernameInput">
             <p>Username</p>
             <input type ="text" placeholder="Username" className="txtBox" value={username} onChange={(event) => setUsername(event.target.value)}></input>
@@ -94,10 +104,12 @@ const Login = (props) => {
           </div>
           <p className="youAgree">By submitting this form I agree to the terms and conditions.</p>
           <button type="submit" className="loginBttn">LOGIN</button>
+          </div>
           </form>
         </Route>
         </div>
           </div>
+    </div>
     </div>
       </BrowserRouter>
       </>

@@ -22,26 +22,26 @@ const App = () => {
     </div>
     <div className='links'>
       <div className='link'>
-        <Link to='/home' className='aType'>HOME</Link>
+        <Link to='/home' className='aType'>Home</Link>
       </div>
       <div className='link'>
-        <Link to='/posts' className='aType'>POSTS</Link>
+        <Link to='/posts' className='aType'>Posts</Link>
       </div>
       <div className='link'>
-        <Link to='/profile' className='aType'>PROFILE</Link>
+        <Link to='/profile' className='aType'>Profile</Link>
       </div>
       <div className='link'>
         { token ? <a href="#"  onClick={(event) => {
         event.preventDefault();
-        setToken('')}}>LOGOUT</a> : <Link to='/login' className='lText'>LOGIN</Link>}
+        setToken('')}}>Logout</a> : <Link to='/login' className='lText'>Login</Link>}
       </div>
     </div>
     <div className='pro'>
-      <h2>Sign up to create a post.</h2>
+      <h2 className='ad'>Sign up to create a post.</h2>
     </div>
   </div>
     <Route exact path="/posts">
-      <Posts posts={posts} setPosts={setPosts}/>
+      <Posts posts={posts} setPosts={setPosts} token={token}/>
     </Route>
     <Route exact path="/home">
       <Home token={token}/>
