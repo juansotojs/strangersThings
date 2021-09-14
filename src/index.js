@@ -5,13 +5,19 @@ import Posts from './components/posts';
 import Home from './components/home';
 import Profile from './components/profile';
 import Login from './components/login';
+import Messages from './components/messages';
+import MessageList from './components/messageList';
+
 
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  const [comment, setComment] = useState('');
+  const [code, setCode] = useState('');
+  const [id, setId] = useState('');
+  
   return <>
   <BrowserRouter>
   <div className='container'>
@@ -40,8 +46,8 @@ const App = () => {
       <h2 className='ad'>Sign up to create a post.</h2>
     </div>
   </div>
-    <Route exact path="/posts">
-      <Posts posts={posts} setPosts={setPosts} token={token}/>
+    <Route exact path="/posts"> 
+      <Posts id={id} setId={setId} posts={posts} setPosts={setPosts} token={token} code={code} setCode={setCode} />
     </Route>
     <Route exact path="/home">
       <Home token={token}/>
@@ -51,6 +57,12 @@ const App = () => {
     </Route>
     <Route exact path="/login">
       <Login setPassword={setPassword} password={password} setUsername={setUsername} username={username} setToken={setToken} token={token}/>
+    </Route>
+    <Route exact path="/messages">
+          <Messages token={token} setComment={setComment} comment={comment} code={code} setCode={setCode} />
+    </Route>
+    <Route exact path="/list_of_messages">
+       <MessageList id={id} setId={setId} posts={posts} setPosts={setPosts} />
     </Route>
   </div>
   </BrowserRouter>

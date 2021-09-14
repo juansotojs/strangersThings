@@ -6,8 +6,26 @@ const AddPost = (props) => {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [location, setLocation] = useState('');
+    const setPosts = props.setPosts;
     const token = props.token;
     let history = useHistory();
+
+    async function getPosts() {
+        fetch('https://strangers-things.herokuapp.com/api/2105-SJS-RM-WEB-PT/posts', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+        }).then(response => response.json())
+          .then(result => {
+            setPosts(result.data.posts);
+          })
+          .catch(console.error);
+  
+          //const request = await fetch('https://strangers-things.herokuapp.com/api/2105-SJS-RM-WEB-PT/posts');
+          //const response = await request.json();
+          //setPosts(response.data.posts);
+      }
 
     return <>
         <div className="card">
@@ -30,7 +48,7 @@ const AddPost = (props) => {
   })
 }).then(response => response.json())
   .then(result => {
-    console.log(result);
+    getPosts();
   })
   .catch(console.error);
 

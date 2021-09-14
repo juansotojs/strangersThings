@@ -1,15 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import AddPost from './addPost';
+import { useHistory } from "react-router-dom";
+
 
 const Posts = (props) => {
     const posts = props.posts;
     const setPosts = props.setPosts;
     const token = props.token;
+    const code = props.code;
+    const setCode = props.setCode;
+    const setId = props.setId;
+    let history = useHistory();
     async function getPosts() {
-        const request = await fetch('https://strangers-things.herokuapp.com/api/2105-SJS-RM-WEB-PT/posts');
-        const response = await request.json();
-        setPosts(response.data.posts);
+      fetch('https://strangers-things.herokuapp.com/api/2105-SJS-RM-WEB-PT/posts', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+      }).then(response => response.json())
+        .then(result => {
+          setPosts(result.data.posts);
+        })
+        .catch(console.error);
+
+        //const request = await fetch('https://strangers-things.herokuapp.com/api/2105-SJS-RM-WEB-PT/posts');
+        //const response = await request.json();
+        //setPosts(response.data.posts);
     }
     useEffect(() => getPosts(), []);
 
@@ -22,7 +39,7 @@ const Posts = (props) => {
         }
           }).then(response => response.json())
           .then(result => {
-        console.log(result);
+            getPosts();
         })
         .catch(console.error);
 
@@ -56,18 +73,26 @@ const Posts = (props) => {
           <div className="subInfo">
           <h3>Location: </h3> <p className="infoVal">{post.location}</p></div>
           </div>
-          <button className='messageBttn'>SEND MESSAGE</button>
-          { token ? <button className='messageBttn' onClick={() => handleDelete(idx)}>DELETE</button> : null}
+          { token && !post.isAuthor ? <button className='messageBttn' onClick={() => {
+            history.push("/messages");
+            setCode(post._id);
+            }}
+            >SEND MESSAGE</button> : null}
+          { token && post.isAuthor ? <button className='messageBttn' onClick={() => {
+            history.push("/list_of_messages");
+            setId(idx);
+            }}
+            >SEE MESSAGES</button> : null }
+          { token  && post.isAuthor ? <button className='messageBttn' onClick={() => handleDelete(post._id)}>DELETE</button> : null}
           </div>
         </div>
       )}
     </div>
     </Route>
     
-    
     <Route exact path="/posts/newpost">
     <div className="cards">
-      <AddPost token={token}/>
+      <AddPost token={token} setPosts={setPosts}/>
     </div>
     </Route>
     </div>
