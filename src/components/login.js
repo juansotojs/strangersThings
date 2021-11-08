@@ -25,7 +25,7 @@ const Login = (props) => {
   }).then(response => response.json())
     .then(result => {
      setToken(result.data.token);
-     history.push("/home");
+     history.push("/");
    })
   .catch(console.error);
   }
@@ -46,7 +46,7 @@ const Login = (props) => {
            console.log('register');
            if(result.success === true){
              setToken(result.data.token);
-             history.push("/home");
+             history.push("/");
            } 
           })
             //.catch(console.error);
@@ -59,12 +59,11 @@ const Login = (props) => {
     <h1 className='section'>Login/Register</h1>
     </div>
     <div className="cards">
-        <div className="card">
+        <div className="cardOne">
         <div className="toggle">
         <Link to='/login/signin' className="opt">Login</Link>
         <Link to='/login/register' className="opt">Register</Link>
         </div>
-        <div>
         <Route exact path="/login/register">
           <div className="card-info">
         <form className='field' onSubmit={ async (event) => {
@@ -109,7 +108,6 @@ const Login = (props) => {
         </Route>
         </div>
           </div>
-    </div>
     </div>
       </BrowserRouter>
       </>

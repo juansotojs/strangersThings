@@ -28,7 +28,7 @@ const App = () => {
     </div>
     <div className='links'>
       <div className='link'>
-        <Link to='/home' className='aType'>Home</Link>
+        <Link to='/' className='aType'>Home</Link>
       </div>
       <div className='link'>
         <Link to='/posts' className='aType'>Posts</Link>
@@ -49,7 +49,7 @@ const App = () => {
     <Route exact path="/posts"> 
       <Posts id={id} setId={setId} posts={posts} setPosts={setPosts} token={token} code={code} setCode={setCode} />
     </Route>
-    <Route exact path="/home">
+    <Route exact path="/">
       <Home token={token}/>
     </Route>
     <Route exact path="/profile">

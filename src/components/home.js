@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const Home = (props) => {
-    const token = props.token;
+    
     return <>
     <div className='posts'>
       <div className='status'>
